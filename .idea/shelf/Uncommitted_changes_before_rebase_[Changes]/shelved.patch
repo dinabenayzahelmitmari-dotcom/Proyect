@@ -1,0 +1,17 @@
+Index: src/main/java/cifrado/Descifrado.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package cifrado;\r\n\r\nimport javax.crypto.Cipher;\r\nimport javax.crypto.spec.SecretKeySpec;\r\nimport java.util.Base64;\r\n\r\npublic class Descifrado {\r\n\r\n    private static final String ALGORITMO = \"AES\";\r\n    private static final String CLAVE = \"1234567890123456\"; // Igual que en el cliente\r\n\r\n    public static String descifrar(String textoCifrado) throws Exception {\r\n        SecretKeySpec key = new SecretKeySpec(CLAVE.getBytes(), ALGORITMO);\r\n        Cipher cipher = Cipher.getInstance(ALGORITMO);\r\n        cipher.init(Cipher.DECRYPT_MODE, key);\r\n        byte[] bytesDecodificados = Base64.getDecoder().decode(textoCifrado);\r\n        byte[] textoOriginal = cipher.doFinal(bytesDecodificados);\r\n        return new String(textoOriginal);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/cifrado/Descifrado.java b/src/main/java/cifrado/Descifrado.java
+--- a/src/main/java/cifrado/Descifrado.java	(revision c8192d4a155c249708102e579c71ae32c4a9cae0)
++++ b/src/main/java/cifrado/Descifrado.java	(date 1769034802198)
+@@ -17,4 +17,4 @@
+         byte[] textoOriginal = cipher.doFinal(bytesDecodificados);
+         return new String(textoOriginal);
+     }
+-}
++}
+\ No newline at end of file
